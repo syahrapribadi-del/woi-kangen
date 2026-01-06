@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bucin Button ❤️</title>
+
+<!-- FIREBASE CDN (WAJIB) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: #ff4d6d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+button {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: none;
+  font-size: 80px;
+  background: white;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<button id="btn">❤️</button>
+
+<script>
+/* FIREBASE CONFIG (PUNYA LU) */
+const firebaseConfig = {
+  apiKey: "AIzaSyC3XiC7VuZbkIQxWonURDoENzHEg3jMlyo",
+  authDomain: "project-cintaputra.firebaseapp.com",
+  databaseURL: "https://project-cintaputra-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "project-cintaputra",
+  storageBucket: "project-cintaputra.appspot.com",
+  messagingSenderId: "983740985480",
+  appId: "1:983740985480:web:c57d78d63f14806a092f3d"
+};
+
+/* INIT FIREBASE */
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+/* ROOM (KALIAN BERDUA PAKE YANG SAMA) */
+const room = "bucin-room";
+
+/* REQUEST NOTIFICATION PERMISSION */
+if ("Notification" in window) {
+  Notification.requestPermission();
+}
+
+/* KLIK TOMBOL */
+document.getElementById("btn").addEventListener("click", () => {
+  db.ref(room).set({
+    time: Date.now()
+  });
+});
+
+/* TERIMA SINYAL */
+db.ref(room).on("value", (snap) => {
+  if (!snap.exists()) return;
+
+  // GETAR
+  if (navigator.vibrate) {
+    navigator.vibrate([300, 150, 300]);
+  }
+
+  // BUNYI
+  const audio = new Audio(
+    "https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"
+  );
+  audio.play();
+
+  // NOTIF
+  if (Notification.permission === "granted") {
+    new Notification("❤️ Bucin Alert", {
+      body: "Dia lagi kangen kamu 🥺"
+    });
+  }
+});
+</script>
+
+</body>
+</html>
