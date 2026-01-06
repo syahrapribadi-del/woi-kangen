@@ -1,7 +1,8 @@
 {
   "name": "Woi Kangen",
-  "short_name": "Kangen",
-  "start_url": ".",
+  "short_name": "WoiKangen",
+  "start_url": "/woi-kangen/",
+  "scope": "/woi-kangen/",
   "display": "standalone",
   "background_color": "#ff4d6d",
   "theme_color": "#ff4d6d",
