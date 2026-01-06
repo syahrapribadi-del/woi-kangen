@@ -3,225 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Woi Kangen</title>
+  <title>Woi Kangen ❤️</title>
 
-  <!-- PWA -->
-  <link rel="manifest" href="/woi-kangen/manifest.json">
+  <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ff4d6d">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: #ff4d6d;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-    }
-
-    #btn {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: none;
-      font-size: 60px;
-      background: white;
-      box-shadow: 0 10px 25px rgba(0,0,0,.3);
-      cursor: pointer;
-    }
-
-    #btn:active {
-      transform: scale(0.95);
-    }
-  </style>
-</head>
-
-<body>
-
-<button id="btn">❤️</button>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyC3XiC7VuZbkIQxWonURDoENzHEg3jMlyo",
-    authDomain: "project-cintaputra.firebaseapp.com",
-    databaseURL: "https://project-cintaputra-default-rtdb.firebaseio.com",
-    projectId: "project-cintaputra",
-    storageBucket: "project-cintaputra.appspot.com",
-    messagingSenderId: "983740985480",
-    appId: "1:983740985480:web:c57d78d63f14806a092f3d"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-  const ref = db.ref("bucin-room");
-
-  document.getElementById("btn").onclick = () => {
-    ref.set({ time: Date.now() });
-    navigator.vibrate(200);
-  };
-
-  ref.on("value", snap => {
-    if (snap.exists()) {
-      navigator.vibrate([200, 100, 200]);
-    }
-  });
-
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/woi-kangen/sw.js");
-  }
-</script>
-
-</body>
-  </html></head>
-<body>
-
-<button id="btn">❤️</button>
-
-<!-- Firebase CDN -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyC3XiC7VuZbkIQxWonURDoENzHEg3jMlyo",
-    authDomain: "project-cintaputra.firebaseapp.com",
-    databaseURL: "https://project-cintaputra-default-rtdb.firebaseio.com",
-    projectId: "project-cintaputra",
-    storageBucket: "project-cintaputra.appspot.com",
-    messagingSenderId: "983740985480",
-    appId: "1:983740985480:web:c57d78d63f14806a092f3d"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-  const ref = db.ref("bucin-room");
-
-  document.getElementById("btn").onclick = () => {
-    ref.set({ time: Date.now() });
-    navigator.vibrate(200);
-  };
-
-  ref.on("value", snap => {
-    if (snap.exists()) {
-      navigator.vibrate([200, 100, 200]);
-    }
-  });
-
-  // Register Service Worker
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/woi-kangen/sw.js");
-  }
-</script>
-
-</body>
-</html>      transform: scale(0.95);
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<button id="btn">❤️</button>
+  <button id="btn">❤️</button>
 
-<!-- Firebase CDN -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <!-- FIREBASE CDN -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyC3XiC7VuZbkIQxWonURDoENzHEg3jMlyo",
-    authDomain: "project-cintaputra.firebaseapp.com",
-    databaseURL: "https://project-cintaputra-default-rtdb.firebaseio.com",
-    projectId: "project-cintaputra",
-    storageBucket: "project-cintaputra.appspot.com",
-    messagingSenderId: "983740985480",
-    appId: "1:983740985480:web:c57d78d63f14806a092f3d"
-  };
+  <!-- APP -->
+  <script src="js/app.js"></script>
 
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-  const ref = db.ref("bucin-room");
-
-  document.getElementById("btn").onclick = () => {
-    ref.set({ time: Date.now() });
-    navigator.vibrate(200);
-  };
-
-  ref.on("value", snap => {
-    if (snap.exists()) {
-      navigator.vibrate([200, 100, 200]);
+  <!-- SERVICE WORKER -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
     }
-  });
-
-  // service worker
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
-  }
-</script>
-
-</body>
-</html><button id="btn">❤️</button>
-
-<script>
-/* FIREBASE CONFIG (PUNYA LU) */
-const firebaseConfig = {
-  apiKey: "AIzaSyC3XiC7VuZbkIQxWonURDoENzHEg3jMlyo",
-  authDomain: "project-cintaputra.firebaseapp.com",
-  databaseURL: "https://project-cintaputra-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "project-cintaputra",
-  storageBucket: "project-cintaputra.appspot.com",
-  messagingSenderId: "983740985480",
-  appId: "1:983740985480:web:c57d78d63f14806a092f3d"
-};
-
-/* INIT FIREBASE */
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-/* ROOM (KALIAN BERDUA PAKE YANG SAMA) */
-const room = "bucin-room";
-
-/* REQUEST NOTIFICATION PERMISSION */
-if ("Notification" in window) {
-  Notification.requestPermission();
-}
-
-/* KLIK TOMBOL */
-document.getElementById("btn").addEventListener("click", () => {
-  db.ref(room).set({
-    time: Date.now()
-  });
-});
-
-/* TERIMA SINYAL */
-db.ref(room).on("value", (snap) => {
-  if (!snap.exists()) return;
-
-  // GETAR
-  if (navigator.vibrate) {
-    navigator.vibrate([300, 150, 300]);
-  }
-
-  // BUNYI
-  const audio = new Audio(
-    "https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"
-  );
-  audio.play();
-
-  // NOTIF
-  if (Notification.permission === "granted") {
-    new Notification("❤️ Bucin Alert", {
-      body: "Dia lagi kangen kamu 🥺"
-    });
-  }
-});
-</script>
+  </script>
 
 </body>
 </html>
