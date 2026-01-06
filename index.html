@@ -1,40 +1,85 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bucin Button ❤️</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Woi Kangen</title>
 
-<!-- FIREBASE CDN (WAJIB) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff4d6d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: #ff4d6d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, sans-serif;
-}
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ff4d6d;
+      font-family: Arial, sans-serif;
+    }
 
-button {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: none;
-  font-size: 80px;
-  background: white;
-  cursor: pointer;
-}
-</style>
+    button {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: none;
+      font-size: 60px;
+      background: white;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,.3);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+  </style>
 </head>
-
 <body>
 
 <button id="btn">❤️</button>
+
+<!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyC3XiC7VuZbkIQxWonURDoENzHEg3jMlyo",
+    authDomain: "project-cintaputra.firebaseapp.com",
+    databaseURL: "https://project-cintaputra-default-rtdb.firebaseio.com",
+    projectId: "project-cintaputra",
+    storageBucket: "project-cintaputra.appspot.com",
+    messagingSenderId: "983740985480",
+    appId: "1:983740985480:web:c57d78d63f14806a092f3d"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+  const ref = db.ref("bucin-room");
+
+  document.getElementById("btn").onclick = () => {
+    ref.set({ time: Date.now() });
+    navigator.vibrate(200);
+  };
+
+  ref.on("value", snap => {
+    if (snap.exists()) {
+      navigator.vibrate([200, 100, 200]);
+    }
+  });
+
+  // service worker
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+  }
+</script>
+
+</body>
+</html><button id="btn">❤️</button>
 
 <script>
 /* FIREBASE CONFIG (PUNYA LU) */
